@@ -1,5 +1,9 @@
 language: java
+sudo: true
 
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq csvtool
 install:
   - wget -O robocode-setup.jar "http://downloads.sourceforge.net/project/robocode/robocode/1.9.2.5/robocode-1.9.2.5-setup.jar?r=&ts=1452208388&use_mirror=iweb"
   - unzip robocode-setup.jar
@@ -9,8 +13,3 @@ script:
 
 after_script:
   - csvtool readable results.txt -t TAB
-
-addons:
-  apt:
-    packages:
-    - csvtool
