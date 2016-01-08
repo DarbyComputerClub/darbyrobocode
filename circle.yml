@@ -9,7 +9,7 @@ dependencies:
 
 test:
   override:
-    - javac -classpath $CLASSPATH:./libs/robocode.jar
+    - javac -classpath $CLASSPATH:./libs/robocode.jar ./*.java
     - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
   post:
     - column -ts $'\t' results.txt
