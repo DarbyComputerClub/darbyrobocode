@@ -10,6 +10,7 @@ script:
 after_script:
   - column -ts $'\t' results.txt
   - cat darbyrecord.br
+  - echo "Adding command to hide the record until clicked"
 
 notifications:
   slack:
