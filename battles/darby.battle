@@ -5,4 +5,5 @@ robocode.battle.numRounds=10
 robocode.battle.gunCoolingRate=0.1
 robocode.battle.rules.inactivityTime=450
 robocode.battle.hideEnemyNames=true
+# ADD YOUR ROBOT HERE IN THE FORM lastname.firstname.RobotName
 robocode.battle.selectedRobots=sample.Corners,sample.Fire,sample.MyFirstRobot,sample.SittingDuck,sample.Walls
