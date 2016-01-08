@@ -5,10 +5,11 @@ install:
   - unzip robocode-setup.jar
 
 script:
-  - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt
+  - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br 
 
 after_script:
-  - cat results.txt
+  - column -ts $'\t' results.txt
+  - cat darbyrecord.br
 
 notifications:
   slack:
