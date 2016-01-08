@@ -1,8 +1,7 @@
 language: java
 
 install:
-  - wget -O robocode-setup.jar "http://downloads.sourceforge.net/project/robocode/robocode/1.9.2.5/robocode-1.9.2.5-setup.jar?r=&ts=1452208388&use_mirror=iweb"
-  - unzip robocode-setup.jar
+  - unzip robocode-1.9.2.5-setup.jar
 
 script:
   - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br 
