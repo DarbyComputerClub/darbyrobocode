@@ -1,0 +1,14 @@
+general:
+  artifacts: 
+    - "darbyrecord.br"
+    - "results.txt"
+
+dependencies:
+  override:
+    - TERM=dumb ./gradlew compileJava compileTestJava copyL4jBinLib
+
+test:
+  override:
+    - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
+  post:
+    - column -ts $'\t' results.txt
