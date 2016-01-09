@@ -1,7 +1,7 @@
 general:
   artifacts: 
     - "darbyrecord.br"
-    - "results.txt"
+    - "results-columns.txt"
 
 dependencies:
   override:
@@ -12,4 +12,4 @@ test:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -deprecation -g -source 1.6 -encoding UTF-8
     - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
   post:
-    - column -ts $'\t' results.txt
+    - column -ts $'\t' results.txt | tee results-columns.txt
