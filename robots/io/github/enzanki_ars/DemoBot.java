@@ -1,4 +1,4 @@
-package io.github.enzank;
+package io.github.enzanki_ars;
 import robocode.*;
 import java.awt.Color;
 
