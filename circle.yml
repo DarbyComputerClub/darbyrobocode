@@ -9,8 +9,7 @@ dependencies:
 
 test:
   override:
-    - find robots/ -name '*.java' -print0 | xargs -L 1 -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -deprecation -g -source 1.6 -encoding UTF-8
-    - find robots/ -name '*.class'
+    - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -deprecation -g -source 1.6 -encoding UTF-8
     - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
   post:
     - column -ts $'\t' results.txt
