@@ -9,7 +9,7 @@ dependencies:
 
 test:
   override:
-    - find -name "./robots/*.java" > sources.txt
+    - find ./robots -name "*.java" > sources.txt
     - javac -classpath $CLASSPATH:./libs/robocode.jar @sources.txt
     - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
   post:
