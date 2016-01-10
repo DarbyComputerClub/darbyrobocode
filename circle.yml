@@ -2,6 +2,9 @@ general:
   artifacts: 
     - "darbyrecord.br"
     - "results-columns.txt"
+  branches:
+    ignore:
+      - gh-pages
 
 dependencies:
   override:
