@@ -5,7 +5,7 @@ import java.awt.Color;
 // API help : http://robocode.sourceforge.net/docs/robocode/robocode/Robot.html
 
 /**
- * DemoBot - a robot by (your name here)
+ * DemoBot - a robot by Alex Shafer
  */
 public class DemoBot extends Robot
 {
