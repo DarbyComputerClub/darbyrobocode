@@ -6,4 +6,4 @@ This version of robocode is for the Darby Computer Club.
 
 To add your self to the battle, make a fork and add your robot to the `robots` folder in the form `robots/lastname/firstname/RobotName.java`. Then, submit a pull request.
 
-If you are signed in to github, you can access the artifacts from the build which will contain the battle replay.  If you do not have access to these artifacts, submit a comment here: https://github.com/DarbyComputerClub/darbyrobocode/issues/1
+If you would like to see the most recent battle, download [this battle record](https://darbycomputerclub.github.io/darbyrobocode/darbyrecord.br) or take a look at [the leaderboard](https://darbycomputerclub.github.io/darbyrobocode/results-columns.txt)
