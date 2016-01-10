@@ -14,6 +14,5 @@ test:
   override:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -deprecation -g -source 1.6 -encoding UTF-8
     - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
-    - column -ts $'\t' results.txt | tee results-columns.txt
   post:
     - mkdir ~/results/ && mv darbyrecord.br results-columns.txt ~/results/ && git checkout gh-pages && cp ~/results/results-columns.txt ~/results/darbyrecord.br .  && git config user.email '@' && git config user.name 'CircleCI' && git add results-columns.txt darbyrecord.br && git commit -m 'Update published battle' && git push && git checkout master && cp ~/results/results-columns.txt ~/results/darbyrecord.br . # so they are still available as artifacts
