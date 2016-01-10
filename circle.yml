@@ -22,5 +22,6 @@ test:
     - cp ../results/results-columns.txt ../results/darbyrecord.br .
     - git config user.email '@'
     - git config user.name 'CircleCI'
+    - git add results-columns.txt darbyrecord.br
     - git commit -m 'Update published battle'
     - git push
