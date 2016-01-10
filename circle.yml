@@ -17,8 +17,7 @@ test:
     - column -ts $'\t' results.txt | tee results-columns.txt
   post:
     - mkdir ~/results/
-    - cp darbyrecord.br results-columns.txt ../results/
-    - git stash
+    - mv darbyrecord.br results-columns.txt ../results/
     - git checkout gh-pages
     - cp ../results/results-columns.txt ../results/darbyrecord.br .
     - git config user.email '@'
@@ -27,4 +26,4 @@ test:
     - git commit -m 'Update published battle'
     - git push
     - git checkout master
-    - git stash apply
+    - cp ../results/results-columns.txt ../results/darbyrecord.br . # so they are still available as artifacts
