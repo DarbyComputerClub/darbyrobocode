@@ -18,6 +18,7 @@ test:
   post:
     - mkdir ~/results/
     - cp darbyrecord.br results-columns.txt ../results/
+    - git stash
     - git checkout gh-pages
     - cp ../results/results-columns.txt ../results/darbyrecord.br .
     - git config user.email '@'
@@ -25,3 +26,5 @@ test:
     - git add results-columns.txt darbyrecord.br
     - git commit -m 'Update published battle'
     - git push
+    - git checkout master
+    - git stash apply
