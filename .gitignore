@@ -87,9 +87,11 @@ javadoc*
 libs*
 meleerumble*
 net*
-robocode*
-robots*
+robocode/*
+robots/sample*
+roborumble*
 teamrumble*
+templates*
 theme*
 twinduel*
 versions.md
