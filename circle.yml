@@ -1,21 +1,21 @@
 general:
   artifacts: 
-    - "darbyrecord.br"
-    - "results-columns.txt"
+    - "~/battles/"
   branches:
     ignore:
       - gh-pages
 
 dependencies:
   pre:
-    - sudo pip install cairosvg
+    - sudo -H pip install cairosvg
   override:
     - unzip robocode-1.9.2.5-setup.jar
+    - mkdir ~/battles
 
 test:
   override:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8
-    - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/melee/darby.battle -nodisplay -results results.txt -nosound -record darbyrecord.br
-    - cat <(echo "Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)") <(column -ts $'\t' results.txt) > results-columns.txt
+    - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/melee/darby.battle -nodisplay -results ~/battles/results.txt -nosound -record ~/battles/darbyrecord.br
+    - cat <(echo "Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)") <(column -ts $'\t' ~/battles/results.txt) > ~/battles/results-columns.txt
   post:
     - ./geninfo.sh
