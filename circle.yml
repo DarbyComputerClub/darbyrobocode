@@ -21,6 +21,6 @@ test:
 deployment:
   releaseresults:
     branch: master
-    owner: darbycomputerclub
+    owner: DarbyComputerClub
     commands:
       - ./geninfo.sh
