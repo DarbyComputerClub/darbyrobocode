@@ -1,5 +1,7 @@
 # Robocode - Darby Computer Club Battles
 
+![The latest battle](https://darbycomputerclub.github.io/darbyrobocode/battlegraphic.svg)
+
 [![Circle CI](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master.svg?style=svg)](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master)
 
 This version of robocode is for the Darby Computer Club. 
