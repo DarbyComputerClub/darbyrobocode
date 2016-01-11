@@ -1,6 +1,6 @@
 # Robocode - Darby Computer Club Battles
 
-![The latest battle](https://darbycomputerclub.github.io/darbyrobocode/battlegraphic.svg)
+<img src="https://darbycomputerclub.github.io/darbyrobocode/battlegraphic.svg" alt="The latest battle">
 
 [![Circle CI](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master.svg?style=svg)](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master)
 
