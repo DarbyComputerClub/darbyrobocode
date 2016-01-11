@@ -19,4 +19,4 @@ Current battles run:
     - io.github.enzanki_ars.AlexSimpleBot*
     - io.github.jacobsims.AimingBot*
 
-If you would like to see the most recent battle, download [this battle record](https://darbycomputerclub.github.io/darbyrobocode/darbyrecord.br) or take a look at [the leaderboard](https://darbycomputerclub.github.io/darbyrobocode/results-columns.txt)
+If you would like to see the most recent battle, download [this battle record](https://darbycomputerclub.github.io/darbyrobocode/results/darbyrecord.br) or take a look at [the leaderboard](https://darbycomputerclub.github.io/darbyrobocode/results/results-columns.txt)
