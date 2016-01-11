@@ -74,3 +74,22 @@ Temporary Items
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+# RoboCode
+
+battles*
+*META-INF*
+ReadMe.txt
+ReadMe.html
+compilers*
+config*
+desktop*
+javadoc*
+libs*
+meleerumble*
+net*
+robocode*
+robots*
+teamrumble*
+theme*
+twinduel*
+versions.md
