@@ -17,5 +17,10 @@ test:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8
     - java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/melee/darby.battle -nodisplay -results ~/battles/results.txt -nosound -record ~/battles/darbyrecord.br
     - cat <(echo "Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)") <(column -ts $'\t' ~/battles/results.txt) > ~/battles/results-columns.txt
-  post:
-    - ./geninfo.sh
+
+deployment:
+  releaseresults:
+    branch: master
+    owner: darbycomputerclub
+    commands:
+      - ./geninfo.sh
