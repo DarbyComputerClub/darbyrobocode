@@ -104,6 +104,7 @@ def createWithLeaderboard(leaderboardPath):
     second = '[no more bots]'
     third = '[no more bots]'
     for line in leaderboardLines:
+        print line
         if line.startswith('1st:'):
             winner = line[5:line.index(' ', 5)]
         if line.startswith('2nd:'):
