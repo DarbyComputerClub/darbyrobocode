@@ -104,14 +104,10 @@ template = '''<?xml version="1.0"?>
 </svg>
 '''
 
-def split(l, n):
-    """Yield successive n-sized chunks from l."""
-    for i in xrange(0, len(l), n):
-        yield l[i:i+n]
-
 battles = ["melee/darby","1v1/enz_v_jac"]
 
-run = split(battles, int(os.environ['CIRCLE_NODE_TOTAL']))
+run = [seq[i::int(os.environ['CIRCLE_NODE_TOTAL'])] for i in range(int(os.environ['CIRCLE_NODE_TOTAL']))]
+
 
 print("List of Battles:i\n")
 print(run)
