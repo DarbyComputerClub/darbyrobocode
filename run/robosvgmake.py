@@ -127,11 +127,11 @@ def createWithLeaderboard(leaderboardPath):
 
 def writeFilesForSVG(svgstring, battle):
         f = open(os.path.expanduser('~/battles/results/' + battle + 'graphic.svg'), 'w')
-        f.write(out)
+        f.write(svgstring)
         f.close()
         
         fout = open(os.path.expanduser('~/battles/results/' + battle + 'graphic.png'), 'wb')
-        cairosvg.svg2png(bytestring=out.encode('utf-8'),write_to=fout)
+        cairosvg.svg2png(bytestring=svgstring.encode('utf-8'),write_to=fout)
 
         fout.close()
 
