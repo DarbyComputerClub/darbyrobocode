@@ -17,9 +17,3 @@ test:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8
     - ./runner.py:
         parallel: true
-deployment:
-  releaseresults:
-    branch: master
-    owner: DarbyComputerClub
-    commands:
-      - ./geninfo.sh
