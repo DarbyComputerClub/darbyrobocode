@@ -106,7 +106,7 @@ template = '''<?xml version="1.0"?>
 
 battles = ["melee/darby","1v1/enz_v_jac"]
 
-run = [seq[i::int(os.environ['CIRCLE_NODE_TOTAL'])] for i in range(int(os.environ['CIRCLE_NODE_TOTAL']))]
+run = [battles[i::int(os.environ['CIRCLE_NODE_TOTAL'])] for i in range(int(os.environ['CIRCLE_NODE_TOTAL']))]
 
 
 print("List of Battles:i\n")
