@@ -104,21 +104,24 @@ template = '''<?xml version="1.0"?>
 </svg>
 '''
 
+NODE_TOTAL = int(os.environ['CIRCLE_NODE_TOTAL'])
+NODE_INDEX = int(os.environ['CIRCLE_NODE_INDEX'])
+
 def split(l, n):
     """Yield successive n-sized chunks from l."""
     return [l[i:i+n] for i in xrange(0, len(l), n)]
 
 battles = ["melee/darby","1v1/enz_v_jac"]
 
-run = split(battles, int(os.environ['CIRCLE_NODE_TOTAL']))
+run = split(battles, NODE_TOTAL)
 
 print("List of Battles:i\n")
 print(run)
 
 print("\nRunning:")
-print((run[int(os.environ['CIRCLE_NODE_INDEX'])]))
+print(run[NODE_INDEX])
 
-for battle in run[os.environ['CIRCLE_NODE_INDEX']]:
+for battle in run[NODE_INDEX]:
     os.system("java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/" + battle + ".battle -nodisplay -results ~/battles/results/" + battle + ".txt -nosound -record ~/battles/results/" + battle + ".br")
     os.system("cat <(echo \"Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)\") <(column -ts $'\t' ~/battles/results/" + battle + ".txt) > ~/battles/results/" + battle + "-col.txt")
     with open(os.path.expanduser('~/battles/results/' + battle + '-col.txt'), 'r') as f:
