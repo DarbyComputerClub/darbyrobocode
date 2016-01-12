@@ -165,4 +165,4 @@ for battle in battleList:
 
 # update the website
 if os.environ['CIRCLE_BRANCH'] == 'master' and os.environ['CIRCLE_PROJECT_USERNAME'] == 'DarbyComputerClub':
-        subprocess.call(['~/run/geninfo.sh', repr(battleList)])
+        subprocess.call([os.path.expanduser('~/run/geninfo.sh'), repr(battleList)])
