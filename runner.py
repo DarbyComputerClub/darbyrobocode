@@ -106,8 +106,7 @@ template = '''<?xml version="1.0"?>
 
 def split(l, n):
     """Yield successive n-sized chunks from l."""
-    for i in xrange(0, len(l), n):
-        yield l[i:i+n]
+    return [l[i:i+n] for i in xrange(0, len(l), n)]
 
 battles = ["melee/darby","1v1/enz_v_jac"]
 
