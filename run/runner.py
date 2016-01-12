@@ -26,7 +26,7 @@ for battle in battleList:
                                 'robocode.Robocode',
 	                        '-battle', 'battles/' + battle + '.battle',
 	                        '-nodisplay',
-	                        '-results', os.path.expanduser('~/battles/results/' + battle + '.txt')
+	                        '-results', os.path.expanduser('~/battles/results/' + battle + '.txt'),
 	                        '-nosound',
 	                        '-record', os.path.expanduser('~/battles/results/' + battle + ".br")])
     if exitcode != 0:
