@@ -6,7 +6,7 @@ import pprint
 import pip
 import cairosvg
 
-call(["find robots/ -name '*.java' -print0 | xargs -0 javac -classpath \"$CLASSPATH\":./libs/robocode.jar:./robots -encoding UTF-8"])
+os.system("find robots/ -name '*.java' -print0 | xargs -0 javac -classpath \"$CLASSPATH\":./libs/robocode.jar:./robots -encoding UTF-8")
 
 datauri = '''data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xh
@@ -119,8 +119,8 @@ print("\nRunning:")
 pprint.pprint(list(run[os.environ['CIRCLE_NODE_INDEX']]))
 
 for battle in run[os.environ['CIRCLE_NODE_INDEX']]:
-    call(["java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/" + battle + ".battle -nodisplay -results ~/battles/results/" + battle + ".txt -nosound -record ~/battles/results/" + battle + ".br"])
-    call(["cat <(echo \"Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)\") <(column -ts $'\t' ~/battles/results/" + battle + ".txt) > ~/battles/results/" + battle + "-col.txt"])
+    os.system("java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/" + battle + ".battle -nodisplay -results ~/battles/results/" + battle + ".txt -nosound -record ~/battles/results/" + battle + ".br")
+    os.system("cat <(echo \"Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)\") <(column -ts $'\t' ~/battles/results/" + battle + ".txt) > ~/battles/results/" + battle + "-col.txt")
     with open(os.path.expanduser('~/battles/results/' + battle + '-col.txt'), 'r') as f:
         leaderboardLines = str(f.read()).splitlines()
 
