@@ -7,6 +7,8 @@ import pip
 import cairosvg
 import subprocess
 
+battles = ["melee/darby","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v1/enz_v_wall"]
+
 def bashrun(command):
     subprocess.call(['bash', '-c', command])
 
@@ -108,7 +110,6 @@ template = '''<?xml version="1.0"?>
 </svg>
 '''
 
-battles = ["melee/darby","1v1/enz_v_jac"]
 
 run = [battles[i::int(os.environ['CIRCLE_NODE_TOTAL'])] for i in range(int(os.environ['CIRCLE_NODE_TOTAL']))]
 
