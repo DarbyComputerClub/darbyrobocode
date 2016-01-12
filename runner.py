@@ -111,12 +111,13 @@ def split(l, n):
 
 battles = ["melee/darby","1v1/enz_v_jac"]
 
-run = split(battles, os.environ['CIRCLE_NODE_TOTAL'])
+run = split(battles, int(os.environ['CIRCLE_NODE_TOTAL']))
 
 print("List of Battles:i\n")
-pprint.pprint(list(run))
+print(run)
+
 print("\nRunning:")
-pprint.pprint(list(run[os.environ['CIRCLE_NODE_INDEX']]))
+print((run[int(os.environ['CIRCLE_NODE_INDEX'])]))
 
 for battle in run[os.environ['CIRCLE_NODE_INDEX']]:
     call(["java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/" + battle + ".battle -nodisplay -results ~/battles/results/" + battle + ".txt -nosound -record ~/battles/results/" + battle + ".br"])
