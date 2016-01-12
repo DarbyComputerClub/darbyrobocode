@@ -9,11 +9,12 @@ dependencies:
   pre:
     - sudo -H pip install cairosvg
   override:
-    - unzip robocode-1.9.2.5-setup.jar
+    - cp -R run ~/run
+    - unzip ~/run/robocode-1.9.2.5-setup.jar -d .
     - mkdir ~/battles
 
 test:
   override:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8
-    - ./runner.py:
+    - ~/run/runner.py:
         parallel: true
