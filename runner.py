@@ -116,7 +116,7 @@ print("\nRunning:")
 print(run[int(os.environ['CIRCLE_NODE_INDEX'])])
 
 for battle in run[int(os.environ['CIRCLE_NODE_INDEX'])]:
-    makedirs(os.path.expanduser('~/battles/results/' + battle))
+    os.makedirs(os.path.expanduser('~/battles/results/' + battle))
     os.system("java -Xmx512M -Dsun.io.useCanonCaches=false -cp libs/robocode.jar robocode.Robocode -battle battles/" + battle + ".battle -nodisplay -results ~/battles/results/" + battle + ".txt -nosound -record ~/battles/results/" + battle + ".br")
     os.system("cat <(echo \"Darby Robocode Battle number $CIRCLE_BUILD_NUM (from commit $CIRCLE_SHA1)\") <(column -ts $'\t' ~/battles/results/" + battle + ".txt) > ~/battles/results/" + battle + "-col.txt")
     with open(os.path.expanduser('~/battles/results/' + battle + '-col.txt'), 'r') as f:
