@@ -15,6 +15,7 @@ dependencies:
 
 test:
   override:
-    - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8
+    - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8:
+        parallel: true
     - ~/run/runner.py:
         parallel: true
