@@ -1,6 +1,6 @@
 # Robocode - Darby Computer Club Battles
 
-[![Summary graphic for the latest battle](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darbygraphic.svg)](https://darbycomputerclub.github.io/darbyrobocode/results/results-columns.txt)<br>
+[![Summary graphic for the latest battle](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darbygraphic.svg)](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby-col.txt)<br>
 [view leaderboard](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby-col.txt) | [download battle record](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darbyrecord.br)
 
 [![Circle CI](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master.svg?style=svg)](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master)
