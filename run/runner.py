@@ -12,8 +12,6 @@ battles = ["melee/darby","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v
 def bashrun(command):
     subprocess.call(['bash', '-c', command])
 
-bashrun("find robots/ -name '*.java' -print0 | xargs -0 javac -classpath \"$CLASSPATH\":./libs/robocode.jar:./robots -encoding UTF-8")
-
 datauri = '''data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xh
 BQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB
