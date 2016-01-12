@@ -15,7 +15,7 @@ dependencies:
 test:
   override:
     - find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8
-    - ./runner.py
+    - ./runner.py:
         parallel: true
 deployment:
   releaseresults:
