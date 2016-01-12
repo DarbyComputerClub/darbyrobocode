@@ -154,7 +154,7 @@ for battle in run[int(os.environ['CIRCLE_NODE_INDEX'])]:
         f.write(out)
         f.close()
         
-        fout = open('~/battles/results/' + battle + 'graphic.png', 'wb')
+        fout = open(os.path.expanduser('~/battles/results/' + battle + 'graphic.png'), 'wb')
         cairosvg.svg2png(bytestring=out.encode('utf-8'),write_to=fout)
 
         fout.close()
