@@ -6,7 +6,7 @@ import pprint
 import pip
 import cairosvg
 
-call(["find robots/ -name '*.java' -print0 | xargs -0 javac -classpath "$CLASSPATH":./libs/robocode.jar:./robots -encoding UTF-8"])
+call(["find robots/ -name '*.java' -print0 | xargs -0 javac -classpath \"$CLASSPATH\":./libs/robocode.jar:./robots -encoding UTF-8"])
 
 datauri = '''data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xh
