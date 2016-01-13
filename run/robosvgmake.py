@@ -121,7 +121,7 @@ def createWithLeaderboard(leaderboardPath):
                 for i, prefix in enumerate(robotLinesStartWith):
                     if line[0].startswith(prefix):
                         position = i + 1
-                        info = line[0].split(' ')[1] + " - " + line[1].split(' ')[0]
+                        info = line[0].split(' ')[1] + " - " + line[1]
                         innerwidth = max(innerwidth, 63 + int(len(info) * 11.7))
                         listings += createListing(position, info)
                         listingscount += 1
