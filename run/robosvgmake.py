@@ -95,7 +95,7 @@ template = '''<?xml version="1.0"?>
 
 listing = '''
     <text x="25" y="{y}" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
-    <text x="35" y="{yplus15}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{info}</text>
+    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{info}</text>
 '''
 
 # limit this at the max amount of robots to show
@@ -104,7 +104,7 @@ robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
 def createListing(number, info):
     position = str(number) + ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][number % 10] + ':'
     y = 10 + (50 * number)
-    return listing.format(y=y, yplus15=y+15, position=position, info=info)
+    return listing.format(y=y, yplus25=y+25, position=position, info=info)
 
 def createWithLeaderboard(leaderboardPath):
 
