@@ -101,8 +101,8 @@ listing = '''
 # limit this at the max amount of robots to show
 robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
 
-def createListing(number, info):
-    position = str(number) + ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][number % 10] + ':'
+def createListing(number, prefix, info):
+    position = prefix.rstrip(':')
     y = 10 + (50 * number)
     return listing.format(y=y, yplus25=y+25, position=position, info=info)
 
@@ -123,7 +123,7 @@ def createWithLeaderboard(leaderboardPath):
                         position = i + 1
                         info = line[0].split(' ')[1] + " - " + line[1]
                         innerwidth = max(innerwidth, 63 + int(len(info) * 11.7))
-                        listings += createListing(position, info)
+                        listings += createListing(position, prefix, info)
                         listingscount += 1
 
     outerwidth = innerwidth + 68
