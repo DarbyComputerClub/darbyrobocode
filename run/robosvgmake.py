@@ -100,7 +100,7 @@ listing = '''
 
 def createListing(number, info):
     position = str(number) + ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][number % 10] + ':'
-    y = 60 + (50 * number)
+    y = 10 + (50 * number)
     return listing.format(y=y, yplus15=y+15, position=position, info=info)
 
 def createWithLeaderboard(leaderboardPath):
