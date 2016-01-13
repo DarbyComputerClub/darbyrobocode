@@ -111,11 +111,11 @@ def createWithLeaderboard(leaderboardPath):
             print line
             if len(line) > 3:
                 if line[0].startswith('1st:'):
-                    winner = line[2] + " - " + line[3]
+                    winner = line[0][5:] + " - " + line[1].split(' ')[0]
                 if line[0].startswith('2nd:'):
-                    second = line[2] + " - " + line[3]
+                    second = line[0][5:] + " - " + line[1].split(' ')[0]
                 if line[0].startswith('3rd:'):
-                    third = line[2] + " - " + line[3]
+                    third = line[0][5:] + " - " + line[1].split(' ')[0]
 
     innerwidth = max(440, 63 + int(max(len(winner), len(second), len(third)) * 11.7))
     outerwidth = innerwidth + 68
