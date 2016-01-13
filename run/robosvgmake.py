@@ -102,7 +102,7 @@ listing = '''
 robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
 
 def createListing(number, prefix, info):
-    position = prefix.rstrip(':')
+    position = prefix
     y = 10 + (50 * number)
     return listing.format(y=y, yplus25=y+25, position=position, info=info)
 
