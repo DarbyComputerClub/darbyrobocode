@@ -98,16 +98,18 @@ listing = '''
     <text x="35" y="{yplus15}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{info}</text>
 '''
 
+# limit this at the max amount of robots to show
+robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
+
 def createListing(number, info):
     position = str(number) + ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][number % 10] + ':'
     y = 10 + (50 * number)
     return listing.format(y=y, yplus15=y+15, position=position, info=info)
 
 def createWithLeaderboard(leaderboardPath):
-    
-    winner = '[error finding winner]'
-    second = '[no more bots]'
-    third = '[no more bots]'
+
+    innerwidth = 440
+    listings = ''
     
     with open(leaderboardPath, 'rb') as csvfile:
         leaderboardLines = csv.reader(csvfile, delimiter='\t')
@@ -115,16 +117,13 @@ def createWithLeaderboard(leaderboardPath):
         for line in leaderboardLines:
             print line
             if len(line) > 3:
-                if line[0].startswith('1st:'):
-                    winner = line[0][5:] + " - " + line[1].split(' ')[0]
-                if line[0].startswith('2nd:'):
-                    second = line[0][5:] + " - " + line[1].split(' ')[0]
-                if line[0].startswith('3rd:'):
-                    third = line[0][5:] + " - " + line[1].split(' ')[0]
+                for i, prefix in robotLinesStartWith:
+                    if line[0].startswith(prefix):
+                        position = i + 1
+                        info = line[0].split(' ')[1] + " - " + line[1].split(' ')[0]
+                        innerwidth = max(innerwidth, 63 + int(len(info) * 11.7))
+                        listings += createListing(position, info)
 
-    listings = createListing(1, winner) + createListing(2, second) + createListing(3, third)
-
-    innerwidth = max(440, 63 + int(max(len(winner), len(second), len(third)) * 11.7))
     outerwidth = innerwidth + 68
     imagex = outerwidth - 48 - 5
 
