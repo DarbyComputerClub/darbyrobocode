@@ -108,13 +108,14 @@ def createWithLeaderboard(leaderboardPath):
         leaderboardLines = csv.reader(csvfile, delimiter='\t')
     
         for line in leaderboardLines:
-			print line
-			if line[1].startswith('1st:'):
-				winner = line[2] + " - " + line[3]
-			if line[1].startswith('2nd:'):
-				second = line[2] + " - " + line[3]
-			if line.startswith('3rd:'):
-				third = line[2] + " - " + line[3]
+            print line
+            if len(line) > 3:
+                if line[0].startswith('1st:'):
+                    winner = line[2] + " - " + line[3]
+                if line[0].startswith('2nd:'):
+                    second = line[2] + " - " + line[3]
+                if line[0].startswith('3rd:'):
+                    third = line[2] + " - " + line[3]
 
     innerwidth = max(440, 63 + int(max(len(winner), len(second), len(third)) * 11.7))
     outerwidth = innerwidth + 68
