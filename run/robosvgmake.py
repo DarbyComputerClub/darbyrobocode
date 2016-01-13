@@ -85,8 +85,8 @@ AABJRU5ErkJggg==
 
 template = '''<?xml version="1.0"?>
 <svg width="{outerwidth}" height="{height}" viewBox="0 0 {outerwidth} {height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <rect x="0" y="0" rx="10" ry="10" width="{outerwidth}" height="{height}" style="fill: #000000" />
-    <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="{height}" style="fill: #555555" />
+    <rect x="0" y="0" rx="15" ry="{halfheight}" width="{outerwidth}" height="{height}" style="fill: #000000" />
+    <rect x="10" y="0" rx="15" ry="{halfheight}" width="{innerwidth}" height="{height}" style="fill: #555555" />
     <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle #{battlenum}</text>
     {listings}
     <image x="{imagex}" y="{imagey}" width="48" height="48" xlink:href="{datauri}" />
@@ -136,6 +136,7 @@ def createWithLeaderboard(leaderboardPath):
                           outerwidth=outerwidth,
                           listings=listings,
                           height=height,
+                          halfheight=height/2,
                           imagex=imagex,
                           imagey=imagey,
                           battlenum=os.environ['CIRCLE_BUILD_NUM'])
