@@ -1,5 +1,6 @@
 import cairosvg
 import os
+import csv
 
 datauri = '''data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xh
@@ -86,7 +87,7 @@ template = '''<?xml version="1.0"?>
 <svg width="{outerwidth}" height="205" viewBox="0 0 {outerwidth} 205" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <rect x="0" y="0" rx="10" ry="10" width="{outerwidth}" height="205" style="fill: #000000" />
     <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="205" style="fill: #555555" />
-    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle {battlenum}</text>
+    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle #{battlenum}</text>
     <text x="25" y="60" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">Won by:</text>
     <text x="35" y="85" font-family="Courier, monospace" font-size="20" fill="#ffffff">{winner}</text>
     <text x="25" y="110" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">2nd:</text>
@@ -98,19 +99,22 @@ template = '''<?xml version="1.0"?>
 '''
 
 def createWithLeaderboard(leaderboardPath):
-    with open(leaderboardPath, 'r') as f:
-        leaderboardLines = str(f.read()).splitlines()
+    
     winner = '[error finding winner]'
     second = '[no more bots]'
     third = '[no more bots]'
+    
+    with open(leaderboardPath, 'rb') as csvfile:
+        leaderboardLines = csv.reader(csvfile, delimiter='\t')
+    
     for line in leaderboardLines:
         print line
-        if line.startswith('1st:'):
-            winner = line[5:line.index(' ', 5)]
-        if line.startswith('2nd:'):
-            second = line[5:line.index(' ', 5)]
+        if line[1].startswith('1st:'):
+            winner = line[2] + " - " + line[3]
+        if line[1].startswith('2nd:'):
+            second = line[2] + " - " + line[3]
         if line.startswith('3rd:'):
-            third = line[5:line.index(' ', 5)]
+            third = line[2] + " - " + line[3]
 
     innerwidth = max(440, 63 + int(max(len(winner), len(second), len(third)) * 11.7))
     outerwidth = innerwidth + 68
