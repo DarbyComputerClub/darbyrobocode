@@ -89,7 +89,7 @@ template = '''<?xml version="1.0"?>
     <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="{height}" style="fill: #555555" />
     <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle #{battlenum}</text>
     {listings}
-    <image x="{imagex}" y="79" width="48" height="48" xlink:href="{datauri}" />
+    <image x="{imagex}" y="{imagey}" width="48" height="48" xlink:href="{datauri}" />
 </svg>
 '''
 
@@ -127,8 +127,9 @@ def createWithLeaderboard(leaderboardPath):
                         listingscount += 1
 
     outerwidth = innerwidth + 68
-    imagex = outerwidth - 48 - 5
     height = 55 + (50 * listingscount)
+    imagex = outerwidth - 48 - 5
+    imagey = height / 2 - (48 / 2)
 
     out = template.format(datauri=datauri,
                           innerwidth=innerwidth,
@@ -136,6 +137,7 @@ def createWithLeaderboard(leaderboardPath):
                           listings=listings,
                           height=height,
                           imagex=imagex,
+                          imagey=imagey,
                           battlenum=os.environ['CIRCLE_BUILD_NUM'])
     return out
 
