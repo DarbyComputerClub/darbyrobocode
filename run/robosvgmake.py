@@ -118,7 +118,7 @@ def createWithLeaderboard(leaderboardPath):
         for line in leaderboardLines:
             print line
             if len(line) > 3:
-                for i, prefix in robotLinesStartWith:
+                for i, prefix in enumerate(robotLinesStartWith):
                     if line[0].startswith(prefix):
                         position = i + 1
                         info = line[0].split(' ')[1] + " - " + line[1].split(' ')[0]
