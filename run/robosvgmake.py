@@ -1,5 +1,6 @@
 import cairosvg
 import os
+import csv
 
 datauri = '''data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xh
@@ -83,47 +84,62 @@ AABJRU5ErkJggg==
 '''.replace('\n', '')
 
 template = '''<?xml version="1.0"?>
-<svg width="{outerwidth}" height="205" viewBox="0 0 {outerwidth} 205" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <rect x="0" y="0" rx="10" ry="10" width="{outerwidth}" height="205" style="fill: #000000" />
-    <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="205" style="fill: #555555" />
-    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle {battlenum}</text>
-    <text x="25" y="60" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">Won by:</text>
-    <text x="35" y="85" font-family="Courier, monospace" font-size="20" fill="#ffffff">{winner}</text>
-    <text x="25" y="110" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">2nd:</text>
-    <text x="35" y="135" font-family="Courier, monospace" font-size="20" fill="#ffffff">{second}</text>
-    <text x="25" y="160" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">3rd:</text>
-    <text x="35" y="185" font-family="Courier, monospace" font-size="20" fill="#ffffff">{third}</text>
-    <image x="{imagex}" y="79" width="48" height="48" xlink:href="{datauri}" />
+<svg width="{outerwidth}" height="{height}" viewBox="0 0 {outerwidth} {height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <rect x="0" y="0" rx="15" ry="{halfheight}" width="{outerwidth}" height="{height}" style="fill: #000000" />
+    <rect x="10" y="0" rx="15" ry="{halfheight}" width="{innerwidth}" height="{height}" style="fill: #555555" />
+    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">{battleheader}</text>
+    {listings}
+    <image x="{imagex}" y="{imagey}" width="48" height="48" xlink:href="{datauri}" />
 </svg>
 '''
 
-def createWithLeaderboard(leaderboardPath):
-    with open(leaderboardPath, 'r') as f:
-        leaderboardLines = str(f.read()).splitlines()
-    winner = '[error finding winner]'
-    second = '[no more bots]'
-    third = '[no more bots]'
-    for line in leaderboardLines:
-        print line
-        if line.startswith('1st:'):
-            winner = line[5:line.index(' ', 5)]
-        if line.startswith('2nd:'):
-            second = line[5:line.index(' ', 5)]
-        if line.startswith('3rd:'):
-            third = line[5:line.index(' ', 5)]
+listing = '''
+    <text x="25" y="{y}" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
+    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{info}</text>
+'''
 
-    innerwidth = max(440, 63 + int(max(len(winner), len(second), len(third)) * 11.7))
+# limit this at the max amount of robots to show
+robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
+
+def createListing(number, prefix, info):
+    position = prefix
+    y = 10 + (50 * number)
+    return listing.format(y=y, yplus25=y+25, position=position, info=info)
+
+def createWithLeaderboard(leaderboardPath, battlename):
+    battleheader = battlename + ' #' + os.environ['CIRCLE_BUILD_NUM']
+    innerwidth = 30 + int(len(battleheader) * 16.2)
+    listings = ''
+    listingscount = 0
+    
+    with open(leaderboardPath, 'rb') as csvfile:
+        leaderboardLines = csv.reader(csvfile, delimiter='\t')
+    
+        for line in leaderboardLines:
+            print line
+            if len(line) > 3:
+                for i, prefix in enumerate(robotLinesStartWith):
+                    if line[0].startswith(prefix):
+                        position = i + 1
+                        info = line[0].split(' ')[1] + " - " + line[1]
+                        innerwidth = max(innerwidth, 63 + int(len(info) * 11.7))
+                        listings += createListing(position, prefix, info)
+                        listingscount += 1
+
     outerwidth = innerwidth + 68
+    height = 55 + (50 * listingscount)
     imagex = outerwidth - 48 - 5
+    imagey = height / 2 - (48 / 2)
 
     out = template.format(datauri=datauri,
                           innerwidth=innerwidth,
                           outerwidth=outerwidth,
-                          winner=winner,
-                          second=second,
-                          third=third,
+                          listings=listings,
+                          height=height,
+                          halfheight=height/2,
                           imagex=imagex,
-                          battlenum=os.environ['CIRCLE_BUILD_NUM'])
+                          imagey=imagey,
+                          battleheader=battleheader)
     return out
 
 def writeFilesForSVG(svgstring, battle):
@@ -137,5 +153,5 @@ def writeFilesForSVG(svgstring, battle):
         fout.close()
 
 def create(battle):
-    svg = createWithLeaderboard(os.path.expanduser('~/battles/results/' + battle + '-col.txt'))
+    svg = createWithLeaderboard(os.path.expanduser('~/battles/results/' + battle + '.txt'), battle)
     writeFilesForSVG(svg, battle)
