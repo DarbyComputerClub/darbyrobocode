@@ -147,5 +147,5 @@ def writeFilesForSVG(svgstring, battle):
         fout.close()
 
 def create(battle):
-    svg = createWithLeaderboard(os.path.expanduser('~/battles/results/' + battle + '-col.txt'))
+    svg = createWithLeaderboard(os.path.expanduser('~/battles/results/' + battle + '.txt'))
     writeFilesForSVG(svg, battle)
