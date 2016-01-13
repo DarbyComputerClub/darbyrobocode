@@ -87,7 +87,7 @@ template = '''<?xml version="1.0"?>
 <svg width="{outerwidth}" height="{height}" viewBox="0 0 {outerwidth} {height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <rect x="0" y="0" rx="15" ry="{halfheight}" width="{outerwidth}" height="{height}" style="fill: #000000" />
     <rect x="10" y="0" rx="15" ry="{halfheight}" width="{innerwidth}" height="{height}" style="fill: #555555" />
-    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle #{battlenum}</text>
+    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">{battleheader}</text>
     {listings}
     <image x="{imagex}" y="{imagey}" width="48" height="48" xlink:href="{datauri}" />
 </svg>
@@ -106,9 +106,9 @@ def createListing(number, prefix, info):
     y = 10 + (50 * number)
     return listing.format(y=y, yplus25=y+25, position=position, info=info)
 
-def createWithLeaderboard(leaderboardPath):
-
-    innerwidth = 440
+def createWithLeaderboard(leaderboardPath, battlename):
+    battleheader = battlename + ' #' + os.environ['CIRCLE_BUILD_NUM']
+    innerwidth = 30 + int(len(battleheader) * 16.2)
     listings = ''
     listingscount = 0
     
@@ -139,7 +139,7 @@ def createWithLeaderboard(leaderboardPath):
                           halfheight=height/2,
                           imagex=imagex,
                           imagey=imagey,
-                          battlenum=os.environ['CIRCLE_BUILD_NUM'])
+                          battleheader=battleheader)
     return out
 
 def writeFilesForSVG(svgstring, battle):
@@ -153,5 +153,5 @@ def writeFilesForSVG(svgstring, battle):
         fout.close()
 
 def create(battle):
-    svg = createWithLeaderboard(os.path.expanduser('~/battles/results/' + battle + '.txt'))
+    svg = createWithLeaderboard(os.path.expanduser('~/battles/results/' + battle + '.txt'), battle)
     writeFilesForSVG(svg, battle)
