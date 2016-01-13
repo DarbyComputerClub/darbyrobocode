@@ -88,15 +88,20 @@ template = '''<?xml version="1.0"?>
     <rect x="0" y="0" rx="10" ry="10" width="{outerwidth}" height="205" style="fill: #000000" />
     <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="205" style="fill: #555555" />
     <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle #{battlenum}</text>
-    <text x="25" y="60" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">Won by:</text>
-    <text x="35" y="85" font-family="Courier, monospace" font-size="20" fill="#ffffff">{winner}</text>
-    <text x="25" y="110" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">2nd:</text>
-    <text x="35" y="135" font-family="Courier, monospace" font-size="20" fill="#ffffff">{second}</text>
-    <text x="25" y="160" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">3rd:</text>
-    <text x="35" y="185" font-family="Courier, monospace" font-size="20" fill="#ffffff">{third}</text>
+    {listings}
     <image x="{imagex}" y="79" width="48" height="48" xlink:href="{datauri}" />
 </svg>
 '''
+
+listing = '''
+    <text x="25" y="{y}" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
+    <text x="35" y="{yplus15}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{info}</text>
+'''
+
+def createListing(number, info):
+    position = str(number) + ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][number % 10] + ':'
+    y = 60 + (50 * number)
+    return listing.format(y=y, yplus15=y+15, position=position, info=info)
 
 def createWithLeaderboard(leaderboardPath):
     
@@ -117,6 +122,8 @@ def createWithLeaderboard(leaderboardPath):
                 if line[0].startswith('3rd:'):
                     third = line[0][5:] + " - " + line[1].split(' ')[0]
 
+    listings = createListing(1, winner) + createListing(2, second) + createListing(3, third)
+
     innerwidth = max(440, 63 + int(max(len(winner), len(second), len(third)) * 11.7))
     outerwidth = innerwidth + 68
     imagex = outerwidth - 48 - 5
@@ -124,9 +131,7 @@ def createWithLeaderboard(leaderboardPath):
     out = template.format(datauri=datauri,
                           innerwidth=innerwidth,
                           outerwidth=outerwidth,
-                          winner=winner,
-                          second=second,
-                          third=third,
+                          listings=listings,
                           imagex=imagex,
                           battlenum=os.environ['CIRCLE_BUILD_NUM'])
     return out
