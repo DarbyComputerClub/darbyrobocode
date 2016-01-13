@@ -84,9 +84,9 @@ AABJRU5ErkJggg==
 '''.replace('\n', '')
 
 template = '''<?xml version="1.0"?>
-<svg width="{outerwidth}" height="205" viewBox="0 0 {outerwidth} 205" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <rect x="0" y="0" rx="10" ry="10" width="{outerwidth}" height="205" style="fill: #000000" />
-    <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="205" style="fill: #555555" />
+<svg width="{outerwidth}" height="{height}" viewBox="0 0 {outerwidth} {height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <rect x="0" y="0" rx="10" ry="10" width="{outerwidth}" height="{height}" style="fill: #000000" />
+    <rect x="10" y="0" rx="10" ry="10" width="{innerwidth}" height="{height}" style="fill: #555555" />
     <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">Darby Robocode Battle #{battlenum}</text>
     {listings}
     <image x="{imagex}" y="79" width="48" height="48" xlink:href="{datauri}" />
@@ -110,6 +110,7 @@ def createWithLeaderboard(leaderboardPath):
 
     innerwidth = 440
     listings = ''
+    listingscount = 0
     
     with open(leaderboardPath, 'rb') as csvfile:
         leaderboardLines = csv.reader(csvfile, delimiter='\t')
@@ -123,14 +124,17 @@ def createWithLeaderboard(leaderboardPath):
                         info = line[0].split(' ')[1] + " - " + line[1].split(' ')[0]
                         innerwidth = max(innerwidth, 63 + int(len(info) * 11.7))
                         listings += createListing(position, info)
+                        listingscount += 1
 
     outerwidth = innerwidth + 68
     imagex = outerwidth - 48 - 5
+    height = 55 + (50 * listingscount)
 
     out = template.format(datauri=datauri,
                           innerwidth=innerwidth,
                           outerwidth=outerwidth,
                           listings=listings,
+                          height=height,
                           imagex=imagex,
                           battlenum=os.environ['CIRCLE_BUILD_NUM'])
     return out
