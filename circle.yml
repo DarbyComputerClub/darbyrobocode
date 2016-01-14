@@ -19,3 +19,4 @@ test:
         parallel: true
     - ~/run/runner.py:
         parallel: true
+    - ~/run/upload.py
