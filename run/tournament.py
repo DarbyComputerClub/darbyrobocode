@@ -68,6 +68,7 @@ def runTournament(botList):
         return runTournament(winners)
 
 def runTournamentCalled(name):
+    global battletemplate
     p = loadFile('battles/' + name + '.tournament')
     battletemplate, darbyopts = separateProps(p)
 
