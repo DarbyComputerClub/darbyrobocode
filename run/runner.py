@@ -43,4 +43,4 @@ for battle in battleList:
 
 # update the website
 if os.environ['CIRCLE_BRANCH'] == 'master' and os.environ['CIRCLE_PROJECT_USERNAME'] == 'DarbyComputerClub' and not os.environ['CIRCLE_NODE_INDEX'] == '0':
-        subprocess.call(['scp', 'ubuntu@node0', os.path.expanduser('~/battles/')])
+        subprocess.call(['scp', '-r', 'ubuntu@node0:battles/', os.path.expanduser('~/battles/')])
