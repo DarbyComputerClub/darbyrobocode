@@ -6,6 +6,7 @@ import pip
 import subprocess
 import robosvgmake
 import tournament
+from robocoderun import robocoderun
 
 battles = ["melee/darby","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v1/enz_v_wall"]
 
@@ -24,14 +25,9 @@ print(battleList)
 for battle in battleList:
     os.makedirs(os.path.expanduser('~/battles/results/' + battle))
     if os.path.isfile('battles/' + battle + '.battle'):
-        code = subprocess.call(['java', '-Xmx512M', '-Dsun.io.useCanonCaches=false', '-cp', 'libs/robocode.jar',
-                                'robocode.Robocode',
-	                        '-battle', 'battles/' + battle + '.battle',
-	                        '-nodisplay',
-	                        '-results', os.path.expanduser('~/battles/results/' + battle + '.txt'),
-	                        '-nosound',
-	                        '-record', os.path.expanduser('~/battles/results/' + battle + ".br")])
-
+        code = robocoderun('battles/' + battle + '.battle',
+	                   os.path.expanduser('~/battles/results/' + battle + '.txt'),
+			   os.path.expanduser('~/battles/results/' + battle + '.br'))
         if code != 0:
             exit(code)
     elif os.path.isfile('battles/' + battle + '.tournament'):
