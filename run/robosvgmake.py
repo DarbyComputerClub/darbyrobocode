@@ -87,16 +87,16 @@ template = '''<?xml version="1.0"?>
 <svg width="{outerwidth}" height="{height}" viewBox="0 0 {outerwidth} {height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <rect x="0" y="0" rx="15" ry="{halfheight}" width="{outerwidth}" height="{height}" style="fill: #000000" />
     <rect x="10" y="0" rx="15" ry="{halfheight}" width="{innerwidth}" height="{height}" style="fill: #555555" />
-    <text x="25" y="35" font-family="Courier, monospace" font-size="27" fill="#ffffff">{battleheader}</text>
+    <text x="25" y="35" font-family="'Droid Sans Mono', Courier, monospace" font-size="27" fill="#ffffff">{battleheader}</text>
     {listings}
     <image x="{imagex}" y="{imagey}" width="48" height="48" xlink:href="{datauri}" />
 </svg>
 '''
 
 listing = '''
-    <text x="25" y="{y}" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
-    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="{namecolor}">{name}</text>
-    <text x="{scorex}" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{score}</text>
+    <text x="25" y="{y}" font-family="'Droid Sans Mono', Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
+    <text x="35" y="{yplus25}" font-family="'Droid Sans Mono', Courier, monospace" font-size="20" fill="{namecolor}">{name}</text>
+    <text x="{scorex}" y="{yplus25}" font-family="'Droid Sans Mono', Courier, monospace" font-size="20" fill="#ffffff">{score}</text>
 '''
 
 # limit this at the max amount of robots to show
