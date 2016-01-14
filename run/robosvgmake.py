@@ -95,21 +95,27 @@ template = '''<?xml version="1.0"?>
 
 listing = '''
     <text x="25" y="{y}" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
-    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{info}</text>
+    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="{namecolor}">{name}</text>
+    <text x="{scorex}" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{score}</text>
 '''
 
 # limit this at the max amount of robots to show
 robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
 
-def createListing(number, prefix, info):
+def formatColor(r, g, b):
+    return '#{0:02x}{1:02x}{2:02x}'.format(r, g, b)
+
+def createListing(number, prefix, name, score, boxwidth):
     position = prefix
     y = 10 + (50 * number)
-    return listing.format(y=y, yplus25=y+25, position=position, info=info)
+    scorex = boxwidth - 10 - int(11.7 * len(score))
+    r, g, b = 255 - (128 * 2 / (number+1)), 255 - (64*2 / (number+1)), 255
+    return listing.format(y=y, yplus25=y+25, position=position, name=name, scorex=scorex, score=score, namecolor=formatColor(r,g,b))
 
 def createWithLeaderboard(leaderboardPath, battlename):
     battleheader = battlename + ' #' + os.environ['CIRCLE_BUILD_NUM']
     innerwidth = 30 + int(len(battleheader) * 16.2)
-    listings = ''
+    listings = []
     listingscount = 0
     
     with open(leaderboardPath, 'rb') as csvfile:
@@ -121,10 +127,12 @@ def createWithLeaderboard(leaderboardPath, battlename):
                 for i, prefix in enumerate(robotLinesStartWith):
                     if line[0].startswith(prefix):
                         position = i + 1
-                        info = line[0].split(' ')[1] + " - " + line[1]
-                        innerwidth = max(innerwidth, 63 + int(len(info) * 11.7))
-                        listings += createListing(position, prefix, info)
+                        name = line[0].split(' ')[1]
+                        score = line[1]
+                        innerwidth = max(innerwidth, 63 + int((len(score) + len(name) + 2) * 11.7))
+                        listings.append({'name': name, 'score': score, 'position': position, 'prefix': prefix})
                         listingscount += 1
+    listingsstring = ''.join(createListing(i['position'], i['prefix'], i['name'], i['score'], innerwidth) for i in listings)
 
     outerwidth = innerwidth + 68
     height = 55 + (50 * listingscount)
@@ -134,7 +142,7 @@ def createWithLeaderboard(leaderboardPath, battlename):
     out = template.format(datauri=datauri,
                           innerwidth=innerwidth,
                           outerwidth=outerwidth,
-                          listings=listings,
+                          listings=listingsstring,
                           height=height,
                           halfheight=height/2,
                           imagex=imagex,
