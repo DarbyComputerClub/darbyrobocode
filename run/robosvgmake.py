@@ -95,18 +95,22 @@ template = '''<?xml version="1.0"?>
 
 listing = '''
     <text x="25" y="{y}" font-family="Courier, monospace" font-size="15" fill="#aaaaaa">{position}</text>
-    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{name}</text>
+    <text x="35" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="{namecolor}">{name}</text>
     <text x="{scorex}" y="{yplus25}" font-family="Courier, monospace" font-size="20" fill="#ffffff">{score}</text>
 '''
 
 # limit this at the max amount of robots to show
 robotLinesStartWith = ['1st:', '2nd:', '3rd:', '4th:', '5th:']
 
+def formatColor(r, g, b):
+    return '#{0:02x}{1:02x}{2:02x}'.format(r, g, b)
+
 def createListing(number, prefix, name, score, boxwidth):
     position = prefix
     y = 10 + (50 * number)
     scorex = boxwidth - 10 - int(11.7 * len(score))
-    return listing.format(y=y, yplus25=y+25, position=position, name=name, scorex=scorex, score=score)
+    r, g, b = 255 - (128 * 2 / (number+1)), 255 - (64*2 / (number+1)), 255
+    return listing.format(y=y, yplus25=y+25, position=position, name=name, scorex=scorex, score=score, namecolor=formatColor(r,g,b))
 
 def createWithLeaderboard(leaderboardPath, battlename):
     battleheader = battlename + ' #' + os.environ['CIRCLE_BUILD_NUM']
