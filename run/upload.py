@@ -3,5 +3,5 @@
 import os
 
 # update the website
-if os.environ['CIRCLE_BRANCH'] == 'master' and os.environ['CIRCLE_PROJECT_USERNAME'] == 'DarbyComputerClub' and not os.environ['CIRCLE_NODE_INDEX']:
+if os.environ['CIRCLE_BRANCH'] == 'master' and os.environ['CIRCLE_PROJECT_USERNAME'] == 'DarbyComputerClub' and os.environ['CIRCLE_NODE_INDEX'] == '0':
         subprocess.call([os.path.expanduser('~/run/geninfo.sh')])
