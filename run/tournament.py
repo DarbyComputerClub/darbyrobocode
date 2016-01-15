@@ -35,7 +35,8 @@ def separateProps(p):
     return newp, darbyopts
 
 def getWinnerOfBattle(bot1, bot2, battletemplate):
-    battle = copy.deepcopy(battletemplate)
+    print battletemplate
+    battle = battletemplate
     battle['robocode.battle.selectedRobots'] = ','.join([bot1, bot2])
     battle.list()
     return random.choice([bot1, bot2])
