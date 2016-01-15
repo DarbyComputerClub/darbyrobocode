@@ -46,7 +46,12 @@ def getWinnerOfBattle(bot1, bot2, battletemplate):
         lines = csv.reader(r, delimiter='\t')
         for line in lines:
             if len(line) > 0 and line[0].startswith('1st:'):
-                return line[0][5:]
+                return line[0][5:], tempdir
+
+def getWinnerAndDiscard(bot1, bot2, battletemplate):
+    winner, tempdir = getWinnerOfBattle(bot1, bot2, battletemplate)
+    shutil.rmtree(tempdir)
+    return winner
 
 
 def splitList(l):
@@ -68,7 +73,7 @@ def retrieveWinners(botList, battletemplate):
 
 def runTournament(botList, battletemplate):
     if len(botList) == 2:
-        winner = getWinnerOfBattle(botList[0], botList[1], battletemplate)
+        winner, tempdir = getWinnerOfBattle(botList[0], botList[1], battletemplate)
         loser = [l for l in botList if l != winner][0]
         return (winner, loser,)
     else:
