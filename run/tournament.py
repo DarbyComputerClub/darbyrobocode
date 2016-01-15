@@ -65,7 +65,7 @@ def runTournament(botList, battletemplate):
         return (winner, loser,)
     else:
         winners = retrieveWinners(botList, battletemplate)
-        return runTournament(winners)
+        return runTournament(winners, battletemplate)
 
 def runTournamentCalled(name):
     p = loadFile('battles/' + name + '.tournament')
