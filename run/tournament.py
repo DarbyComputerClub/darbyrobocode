@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 import pyjavaproperties
+from robocoderun import robocoderun
 import tempfile
 import shutil
 import random
 import copy
+import csv
 
 def loadFile(fpath):
     p = pyjavaproperties.Properties()
@@ -38,8 +40,14 @@ def getWinnerOfBattle(bot1, bot2, battletemplate):
     print battletemplate
     battle = battletemplate
     battle['robocode.battle.selectedRobots'] = ','.join([bot1, bot2])
-    battle.list()
-    return random.choice([bot1, bot2])
+    tempdir = makeTempBattle(battle)
+    robocoderun(tempdir + '/a.battle', tempdir + '/results.txt', tempdir + '/results.br')
+    with open(tempdir + '/results.txt', 'r') as r:
+        lines = csv.reader(r, delimiter='\t')
+        for line in lines:
+            if len(line) > 0 and line[0].startswith('1st:'):
+                return line[0][5:]
+
 
 def splitList(l):
     split = []
