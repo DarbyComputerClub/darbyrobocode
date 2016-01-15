@@ -23,7 +23,7 @@ battleList = run[int(os.environ['CIRCLE_NODE_INDEX'])]
 print(battleList)
 
 for battle in battleList:
-    os.makedirs(os.path.expanduser('~/battles/results/' + battle))
+    os.makedirs(os.path.expanduser('~/battles/results/' + os.path.dirname(battle)))
     if os.path.isfile('battles/' + battle + '.battle'):
         code = robocoderun('battles/' + battle + '.battle',
 	                   os.path.expanduser('~/battles/results/' + battle + '.txt'),
