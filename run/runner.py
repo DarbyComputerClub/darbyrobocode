@@ -8,7 +8,7 @@ import robosvgmake
 import tournament
 from robocoderun import robocoderun
 
-battles = ["tournament/withsample","melee/darby","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v1/enz_v_wall"]
+battles = ["tournament/withsample","tournament/t2","tournament/t3","melee/darby","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v1/enz_v_wall"]
 
 
 run = [battles[i::int(os.environ['CIRCLE_NODE_TOTAL'])] for i in range(int(os.environ['CIRCLE_NODE_TOTAL']))]

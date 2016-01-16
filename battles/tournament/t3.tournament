@@ -1,0 +1,10 @@
+#Battle Properties
+robocode.battleField.width=800
+robocode.battleField.height=600
+robocode.battle.numRounds=7
+robocode.battle.gunCoolingRate=0.1
+robocode.battle.rules.inactivityTime=450
+robocode.battle.hideEnemyNames=true
+# ADD YOUR ROBOT HERE IN THE FORM lastname.firstname.RobotName*
+#                                           star is important ^
+darby.tournament.selectedRobots=sample.Corners,sample.Crazy,sample.Fire,sample.MyFirstJuniorRobot,sample.MyFirstRobot,sample.PaintingRobot,sample.RamFire,sample.SittingDuck,sample.SpinBot,sample.Target,sample.Tracker,sample.TrackFire,sample.VelociRobot,sample.Walls,io.github.jacobsims.AimingBot*,io.github.enzanki_ars.DemoBot*
