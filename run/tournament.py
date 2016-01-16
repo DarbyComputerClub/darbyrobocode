@@ -66,7 +66,7 @@ def retrieveWinners(botList, battletemplate):
     winnerList = []
     for pair in splitList(botList):
         if type(pair) == type([]):
-            winnerList.append(getWinnerOfBattle(pair[0], pair[1], battletemplate))
+            winnerList.append(getWinnerAndDiscard(pair[0], pair[1], battletemplate))
         else:
             winnerList.append(pair)
     return winnerList
@@ -75,7 +75,7 @@ def runTournament(botList, battletemplate):
     if len(botList) == 2:
         winner, tempdir = getWinnerOfBattle(botList[0], botList[1], battletemplate)
         loser = [l for l in botList if l != winner][0]
-        return (winner, loser,)
+        return (winner, loser, tempdir,)
     else:
         winners = retrieveWinners(botList, battletemplate)
         return runTournament(winners, battletemplate)
@@ -89,4 +89,6 @@ def runTournamentCalled(name):
         if k == 'tournament.selectedRobots':
             botsincluded = darbyopts[k].split(',')
 
-    runTournament(botsincluded, battletemplate)
+    winner, loser, tempdir = runTournament(botsincluded, battletemplate)
+    shutil.copyfile(tempdir + '/results.txt', os.path.expanduser('~/battles/results/' + name + '.txt'))
+    shutil.copyfile(tempdir + '/results.br', os.path.expanduser('~/battles/results/' + name + '.br'))
