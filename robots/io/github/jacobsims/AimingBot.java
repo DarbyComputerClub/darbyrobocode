@@ -24,12 +24,10 @@ public class AimingBot extends RateControlRobot
 
 		// Robot main loop
 		while (true) {
-			int ticks = 1;
-
 			doMovement();
 			setGunRotationRate(Rules.GUN_TURN_RATE);
 			double firePower = 0;
-			// Safe, because this code gets run on the same thread, just different time
+			// Safe, because recentScans can only be updated during execute()
 			for (ScannedRobotEvent e : recentScans) {
 				double gunDiff = reactToRobotScan(e);
 				double gunTurnAmount = gunDiff - getTurnRate();
@@ -91,10 +89,7 @@ public class AimingBot extends RateControlRobot
 			setVelocityRate((Math.abs(Utils.normalRelativeAngleDegrees(getHeading())) > 90 ? -1 : 1) * Rules.MAX_VELOCITY);
 		} else if (getY() > maxY) {
 			setVelocityRate((Math.abs(Utils.normalRelativeAngleDegrees(getHeading())) < 90 ? -1 : 1) * Rules.MAX_VELOCITY);
-		} else {
-			System.out.println("else");
 		}
-		System.out.println("getGoodTurnRate: "+getGoodTurnRate());
 		setTurnRate(getGoodTurnRate());
 	}
 
@@ -104,14 +99,11 @@ public class AimingBot extends RateControlRobot
 		double centerXRelX = centerX - getX();
 		double centerYRelY = centerY - getY();
 		double centerBearing = Utils.normalRelativeAngleDegrees(90 - Math.toDegrees(Math.atan2(centerYRelY, centerXRelX)));
-		System.out.println("cB: "+centerBearing+"; gh: "+getHeading());
 		double centerBearingRelHeading = Utils.normalRelativeAngleDegrees(centerBearing - getHeading());
 		if (getVelocity() == 0) {
 			return 0;
 		}
 		double signModifier = getVelocity() / Math.abs(getVelocity());
-		System.out.println("cXRX: "+centerXRelX+"; cxry: "+centerYRelY);
-		System.out.println("cBRH: "+centerBearingRelHeading+"; sM: "+signModifier);
 		if (centerBearingRelHeading < 0) {
 			return -Rules.MAX_TURN_RATE * signModifier;
 		} else {
