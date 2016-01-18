@@ -1,4 +1,0 @@
-Results for 20 rounds
-Robot Name	    Total Score    	Survival	Surv Bonus	Bullet Dmg	Bullet Bonus	Ram Dmg * 2	Ram Bonus	 1sts 	 2nds 	 3rds 	
-1st: io.github.jacobsims.AimingBot*	2762 (87%)	900	180	1334	238	90	19	20	0	0	
-2nd: io.github.enzanki_ars.AlexSimpleBot*	421 (13%)	0	0	360	0	61	0	2	18	0	
