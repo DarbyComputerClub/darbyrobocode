@@ -1,0 +1,8 @@
+Darby Robocode Battle
+1v1/enz_v_wall #275
+Results for 10 rounds
+Robot Name	    Total Score    	Survival	Surv Bonus	Bullet Dmg	Bullet Bonus	Ram Dmg * 2	Ram Bonus	 1sts 	 2nds 	 3rds 	
+1st: sample.Walls	790 (77%)	450	90	206	40	5	0	9	1	0	
+2nd: io.github.enzanki_ars.AlexSimpleBot*	231 (23%)	50	10	150	12	8	0	1	9	0	
+
+commit 3c8ceb83f13896527a7ff19d28e670e7d0682353
