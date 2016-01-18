@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git checkout gh-pages
+git checkout -f gh-pages || exit
 git pull
 mkdir results
 cp -r ~/battles/* .
