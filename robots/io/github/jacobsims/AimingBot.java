@@ -10,14 +10,14 @@ import java.util.Vector;
 public class AimingBot extends RateControlRobot
 {
 	private Vector<ScannedRobotEvent> recentScans;
-	private boolean hadCollision;
+	private int collisionTimer;
 
 	/**
 	 * run: AimingBot's default behavior
 	 */
 	public void run() {
 		recentScans = new Vector<ScannedRobotEvent>();
-		hadCollision = false;
+		collisionTimer = 0;
 
 		setColors(Color.black,Color.blue,Color.black);
 		setVelocityRate(Rules.MAX_VELOCITY);
@@ -90,7 +90,11 @@ public class AimingBot extends RateControlRobot
 		} else if (getY() > maxY) {
 			setVelocityRate((Math.abs(Utils.normalRelativeAngleDegrees(getHeading())) < 90 ? -1 : 1) * Rules.MAX_VELOCITY);
 		}
-		setTurnRate(getGoodTurnRate());
+		if (collisionTimer > 0) {
+			collisionTimer--;
+		} else {
+			setTurnRate(getGoodTurnRate());
+		}
 	}
 
 	public double getGoodTurnRate() {
@@ -131,5 +135,11 @@ public class AimingBot extends RateControlRobot
 	public void onHitWall(HitWallEvent e) {
 		// Wall stuff should be taken care of by the bounds checking in doMovement
 	}	
+
+	public void onHitRobot(HitRobotEvent e) {
+		collisionTimer = 40;
+		setVelocityRate(-getVelocityRate());
+		setTurnRate(-getTurnRate()/2);
+	}
 
 }
