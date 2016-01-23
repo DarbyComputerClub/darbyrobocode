@@ -8,4 +8,4 @@ git config user.email '@' && git config user.name 'CircleCI'
 git add .
 git commit -m "Update published battles $CIRCLE_BUILD_NUM"
 git pull
-git push
+git push origin gh-pages
