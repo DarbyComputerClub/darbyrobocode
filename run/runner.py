@@ -6,7 +6,7 @@ import pip
 import subprocess
 import robosvgmake
 
-battles = ["melee/officers", "melee/all","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v1/enz_v_wall"]
+battles = ["melee/officers", "melee/all", "melee/newbots","melee/withsample","1v1/enz_v_jac","1v1/jac_v_wall","1v1/enz_v_wall"]
 
 
 run = [battles[i::int(os.environ['CIRCLE_NODE_TOTAL'])] for i in range(int(os.environ['CIRCLE_NODE_TOTAL']))]
