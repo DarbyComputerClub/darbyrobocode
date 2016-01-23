@@ -1,7 +1,7 @@
 # Robocode - Darby Computer Club Battles
 
-[![Summary graphic for the latest battle](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darbygraphic.png)](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby-col.txt)<br>
-[view leaderboard](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby-col.txt) | [download battle record](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby.br)
+[![Summary graphic for the latest battle](https://darbycomputerclub.github.io/robocode-results/results/melee/darbygraphic.png)](https://darbycomputerclub.github.io/robocode-results/results/melee/darby-col.txt)<br>
+[view leaderboard](https://darbycomputerclub.github.io/robocode-results/results/melee/darby-col.txt) | [download battle record](https://darbycomputerclub.github.io/robocode-results/results/melee/darby.br)
 
 [![Circle CI](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master.svg?style=svg)](https://circleci.com/gh/DarbyComputerClub/darbyrobocode/tree/master)
 
@@ -29,4 +29,4 @@ Current battles run:
     - io.github.jacobsims.AimingBot*
     - sample.Walls
 
-If you would like to see the most recent battle, download [this battle record](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby.br) or take a look at [the leaderboard](https://darbycomputerclub.github.io/darbyrobocode/results/melee/darby-col.txt)
+If you would like to see the most recent battle, download [this battle record](https://darbycomputerclub.github.io/robocode-results/results/melee/darby.br) or take a look at [the leaderboard](https://darbycomputerclub.github.io/robocode-results/results/melee/darby-col.txt)
