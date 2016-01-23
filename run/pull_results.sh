@@ -6,5 +6,6 @@ if [ -d ~/gh-results/.git ]; then
     git pull
 else
     git clone 'git@github.com:DarbyComputerClub/robocode-results.git' ~/gh-results
+    cd ~/gh-results
     git checkout -f gh-pages
 fi
