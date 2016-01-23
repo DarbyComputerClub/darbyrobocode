@@ -42,5 +42,5 @@ for battle in battleList:
     robosvgmake.create(battle)
 
 # update the website
-if os.environ['CIRCLE_BRANCH'] == 'separate-results' and os.environ['CIRCLE_PROJECT_USERNAME'] == 'DarbyComputerClub' and not os.environ['CIRCLE_NODE_INDEX'] == '0':
+if os.environ['CIRCLE_BRANCH'] == 'master' and os.environ['CIRCLE_PROJECT_USERNAME'] == 'DarbyComputerClub' and not os.environ['CIRCLE_NODE_INDEX'] == '0':
         subprocess.call(['scp', '-r', os.path.expanduser('~/battles/'), 'ubuntu@node0:~/'])
