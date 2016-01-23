@@ -7,11 +7,14 @@ general:
 
 dependencies:
   pre:
-    - pip install --user cairosvg
-  override:
     - cp -R run ~/run
+    - pip install --user cairosvg
+    - ~/run/pull_results.sh
+  override:
     - unzip ~/run/robocode-1.9.2.5-setup.jar -d .
     - mkdir ~/battles
+  cache_directories:
+    - ~/gh-results
 
 test:
   override:

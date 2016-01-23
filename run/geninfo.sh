@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git checkout -f gh-pages || exit
+cd ~/gh-results
 git pull
 mkdir results
 cp -r ~/battles/* .
@@ -9,4 +9,3 @@ git add .
 git commit -m "Update published battles $CIRCLE_BUILD_NUM"
 git pull
 git push
-git checkout master
