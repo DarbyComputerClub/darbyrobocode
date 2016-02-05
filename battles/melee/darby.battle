@@ -7,4 +7,4 @@ robocode.battle.rules.inactivityTime=450
 robocode.battle.hideEnemyNames=true
 # ADD YOUR ROBOT HERE IN THE FORM lastname.firstname.RobotName*
 #                                           star is important ^
-robocode.battle.selectedRobots=io.github.MattJa.Rooobit*,io.github.jazzpr.Planet10*,io.github.mrswhi.HelloWorldRobot*
+robocode.battle.selectedRobots=io.github.MattJa.Rooobit*,io.github.jazzpr.Progress*,io.github.mrswhi.HelloWorldRobot*
