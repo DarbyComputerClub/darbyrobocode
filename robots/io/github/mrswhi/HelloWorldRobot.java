@@ -20,15 +20,15 @@ public class HelloWorldRobot extends AdvancedRobot
 		// After trying out your robot, try uncommenting the import at the top,
 		// and the next line:
 
-		setColors(Color.red,Color.red,Color.red); // body,gun,radar
+		setColors(Color.blue,Color.orange,Color.blue); // body,gun,radar
 
 		// Robot main loop
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(180);
-			turnRight(20);
-			back(100);
+			setAhead(200);
+			setTurnGunRight(10);
+			setTurnLeft(20);
+			execute();
 		}
 	}
 
@@ -45,7 +45,9 @@ public class HelloWorldRobot extends AdvancedRobot
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
 		// Replace the next line with any behavior you would like
-		back(10);
+			back(10);
+			turnRight(50);
+			ahead(50);
 	}
 	
 	/**
@@ -53,6 +55,6 @@ public class HelloWorldRobot extends AdvancedRobot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
-		back(20);
+		setBack(20);
 	}	
 }
