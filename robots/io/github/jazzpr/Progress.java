@@ -1,4 +1,4 @@
-package io.github.JazzPr;
+package io.github.jazzpr;
 import robocode.*;
 import java.awt.Color;
 
