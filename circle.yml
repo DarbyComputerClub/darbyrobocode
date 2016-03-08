@@ -12,6 +12,9 @@ dependencies:
     - cp -R run ~/run
     - unzip ~/run/robocode-1.9.2.5-setup.jar -d .
     - mkdir ~/battles
+    - ~/run/pull_results.sh
+  cache_directories:
+    - ~/gh-results
 
 test:
   override:
