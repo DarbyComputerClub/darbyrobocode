@@ -58,11 +58,7 @@ public class AimingBot extends RateControlRobot
 		double eBearingRelGun = Utils.normalRelativeAngleDegrees(e.getBearing() - (getGunHeading() - getHeading()));
 		double currentPerpAxis = Math.sin(Math.toRadians(eBearingRelGun)) * e.getDistance();
 		double currentHeadAxis = Math.cos(Math.toRadians(eBearingRelGun)) * e.getDistance();
-<<<<<<< HEAD
-		double eHeadingRelGun = Utils.normalRelativeAngleDegrees(e.getHeading() - (getGunHeading()));
-=======
 		double eHeadingRelGun = Utils.normalAbsoluteAngleDegrees(e.getHeading() - (getGunHeading()));
->>>>>>> master
 		double projectedPerpAxis = 0;
 		double projectedHeadAxis = 0;
 		double projectionTime = (e.getDistance() / Rules.getBulletSpeed(bulletPower)) + 1;
